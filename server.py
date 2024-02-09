@@ -36,21 +36,21 @@ def verificar(username, password):
         return False
     return USER_DATA.get(username) == password
 
-@auth.login_required
 @app.route('/update_ubicacion', methods=['POST', 'OPTIONS'])
+@auth.login_required
 def update_ubicacion():
-    if request.method == 'POST':
+    if request.method    ==    'POST':
         data = request.get_json()
         id_usuario = data['id_usuario']
         localizacion = data['localizacion']
         usuario_localizaciones['id_usuario'] = localizacion
         return "Ubicacion Actualizada"
         
-    elif request.method  ==  'OPTIONS':
+    elif request.method    ==    'OPTIONS':
         return ("", 200)
 
-@auth.login_required
 @app.route('/obtener_ubicacion', methods=['GET'])
+@auth.login_required
 def obtener_ubicacion():
         return usuario_localizaciones
 
