@@ -11,7 +11,7 @@ USER_DATA = {
 
 
     
-    "apprastreoadministracionproyectorealizado" = os.environ.get("CLAVE")
+    "apprastreoadministracionproyectorealizado": os.environ.get("CLAVE")
 
 
 
