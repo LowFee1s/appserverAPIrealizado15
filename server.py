@@ -38,6 +38,7 @@ def verificar(username, password):
         return False
     return USER_DATA.get(username) == password
 
+
 @app.route('/update_ubicacion', methods=['POST', 'OPTIONS'])
 @auth.login_required
 def update_ubicacion():
@@ -62,6 +63,7 @@ def obtener_ubicacion():
 @app.route('/static/<path:path>')
 def serve_static(path):
     return send_from_directory('static', path)
+
 
 @app.route('/')
 def home():
