@@ -36,7 +36,7 @@ def verificar(username, password):
         return False
     return USER_DATA.get(username) == password
 
-@app.route('/actualizar_ubicacion', methods=['POST', 'OPTIONS'])
+@app.route('/update_ubicacion', methods=['POST', 'OPTIONS'])
 @auth.login_required
 def actualizar_ubicacion():
     if request.method == 'POST':
