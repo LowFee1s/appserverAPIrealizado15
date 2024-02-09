@@ -5,13 +5,23 @@ from flask import Flask, request, jsonify, send_from_directory, render_template,
 app = Flask(__name__)
 auth = HTTPBasicAuth()
 
+
 USER_DATA = {
 
-    "apprastreoadministracionproyectorealizado" = os.environ.get("CLAVE")
+
+
     
+    "apprastreoadministracionproyectorealizado" = os.environ.get("CLAVE")
+
+
+
+
 }
 
+
 port = int(os.environ.get("PORT", 5000))
+
+
 
 
 usuario_localizaciones = {}
@@ -39,6 +49,8 @@ def actualizar_ubicacion():
 @auth.login_required
 def obtener_ubicacion():
         return usuario_localizaciones
+
+
 
 
 @app.route('/static/<path:path>')
