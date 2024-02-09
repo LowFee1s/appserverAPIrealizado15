@@ -1,14 +1,29 @@
 import os
-from flask import Flask, request, send_from_directory, render_template, redirect
+from flask_httpauth import HTTPBasicAuth
+from flask import Flask, request, jsonify, send_from_directory, render_template, redirect
 
 app = Flask(__name__)
+auth = HTTPBasicAuth()
+
+USER_DATA = {
+
+    "apprastreoadministracionproyectorealizado" = os.environ.get("CLAVE")
+    
+}
 
 port = int(os.environ.get("PORT", 5000))
 
 
 usuario_localizaciones = {}
 
+@auth.verify_password
+def verificar(username, password):
+    if not (username and password): 
+        return False
+    return USER_DATA.get(username) == password
+
 @app.route('/actualizar_ubicacion', methods=['POST', 'OPTIONS'])
+@auth.login_required
 def actualizar_ubicacion():
     if request.method == 'POST':
         data = request.get_json()
@@ -21,6 +36,7 @@ def actualizar_ubicacion():
         return ("", 200)
 
 @app.route('/obtener_ubicacion', methods=['GET'])
+@auth.login_required
 def obtener_ubicacion():
         return usuario_localizaciones
 
