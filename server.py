@@ -31,6 +31,7 @@ port = int(os.environ.get("PORT", 5000))
 
 usuario_localizaciones = {}
 
+
 @auth.verify_password
 def verificar(username, password):
     if not (username and password): 
