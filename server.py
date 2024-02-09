@@ -43,7 +43,7 @@ def update_ubicacion():
         data = request.get_json()
         id_usuario = data['id_usuario']
         localizacion = data['localizacion']
-        usuario_localizaciones['id_usuario'] = localizacion
+        usuario_localizaciones[id_usuario] = localizacion
         return "Ubicacion Actualizada"
         
     elif request.method    ==    'OPTIONS':
