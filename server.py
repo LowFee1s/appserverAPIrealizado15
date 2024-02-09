@@ -5,6 +5,7 @@ app = Flask(__name__)
 
 port = int(os.environ.get("PORT", 5000))
 
+
 usuario_localizaciones = {}
 
 @app.route('/actualizar_ubicacion', methods=['POST', 'OPTIONS'])
@@ -22,7 +23,8 @@ def actualizar_ubicacion():
 @app.route('/obtener_ubicacion', methods=['GET'])
 def obtener_ubicacion():
         return usuario_localizaciones
-        
+
+
 @app.route('/static/<path:path>')
 def serve_static(path):
     return send_from_directory('static', path)
