@@ -46,7 +46,7 @@ def update_ubicacion():
         usuario_localizaciones['id_usuario'] = localizacion
         return "Ubicacion Actualizada"
         
-    elif request.method == 'OPTIONS':
+    elif request.method  ==  'OPTIONS':
         return ("", 200)
 
 @auth.login_required
