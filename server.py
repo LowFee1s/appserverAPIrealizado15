@@ -15,8 +15,9 @@ def actualizar_ubicacion():
         localizacion = data['localizacion']
         usuario_localizaciones['id_usuario] = localizacion
         return "Ubicacion Actualizada"
-        elif request.method == 'OPTIONS':
-            return ("", 200)
+        
+    elif request.method == 'OPTIONS':
+        return ("", 200)
 
 @app.route('/obtener_ubicacion', methods=['GET'])
 def obtener_ubicacion():
