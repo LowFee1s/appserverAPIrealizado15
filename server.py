@@ -51,6 +51,19 @@ def update_ubicacion():
         
     elif request.method    ==    'OPTIONS':
         return ("", 200)
+        
+@app.route('/quitar_ubicacion', methods=['POST', 'OPTIONS'])
+@auth.login_required
+def quitar_ubicacion():
+    if request.method    ==    'POST':
+        data = request.get_json()
+        id_usuario = data['id_usuario']
+        if id_usuario in usuario_localizaciones:
+            del usuario_localizaciones[id_usuario]
+        return "Ubicacion Quitada"
+        
+    elif request.method    ==    'OPTIONS':
+        return ("", 200)
 
 @app.route('/obtener_ubicacion', methods=['GET'])
 @auth.login_required
