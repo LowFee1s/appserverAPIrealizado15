@@ -46,10 +46,8 @@ def update_ubicacion():
     if request.method    ==    'POST':
         data = request.get_json()
         id_usuario = data['id_usuario']
-        camion = data['camion']
-        ruta = data['ruta']
         localizacion = data['localizacion']
-        usuario_localizaciones[id_usuario] = localizacion, camion, ruta
+        usuario_localizaciones[id_usuario] = localizacion
         return "Ubicacion Actualizada"
         
     elif request.method    ==    'OPTIONS':
