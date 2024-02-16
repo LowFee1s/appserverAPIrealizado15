@@ -53,6 +53,12 @@ def update_ubicacion():
     elif request.method    ==    'OPTIONS':
         return ("", 200)
         
+@app.route('/obtener_ubicacion/<camion>', methods=['GET'])
+@auth.login_required
+def obtener_ubicacion_camion(camion):
+    datos_camion = {k: v for k, v in usuario_localizaciones.items() if v['Camion'] == camion}
+    return datos_camion
+
 @app.route('/quitar_ubicacion', methods=['POST', 'OPTIONS'])
 @auth.login_required
 def quitar_ubicacion():
