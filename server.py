@@ -31,6 +31,7 @@ port = int(os.environ.get("PORT", 5000))
 
 
 usuario_localizaciones = {}
+camiones = set()
 
 
 @auth.verify_password
@@ -49,6 +50,7 @@ def update_ubicacion():
         localizacion = data['localizacion']
         ruta = data.get('Ruta', [])
         camion = data.get('Camion', '')
+        camiones.add(camion)
 
         usuario_localizaciones[id_usuario] = {
             'localizacion': localizacion,
@@ -66,6 +68,11 @@ def update_ubicacion():
 def obtener_ubicacion_camion(camion):
     datos_camion = {k: v for k, v in usuario_localizaciones.items() if v['Camion'] == camion}
     return datos_camion
+
+@app.route('/camiones', methods=['GET'])
+@auth.login_required
+def mostrar_camiones():
+    return list(camiones)
 
 @app.route('/quitar_ubicacion', methods=['POST', 'OPTIONS'])
 @auth.login_required
