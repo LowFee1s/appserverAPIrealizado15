@@ -49,12 +49,14 @@ def update_ubicacion():
         id_usuario = data['id_usuario']
         localizacion = data['localizacion']
         ruta = data.get('Ruta', [])
+        direccion = data['direccion']
         camion = data.get('Camion', '')
         camiones.add(camion)
 
         usuario_localizaciones[id_usuario] = {
             'localizacion': localizacion,
             'Ruta': ruta,
+            'Direccion': direccion,
             'Camion': camion,
         }
 
