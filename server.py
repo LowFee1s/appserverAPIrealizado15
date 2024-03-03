@@ -49,6 +49,7 @@ def update_ubicacion():
         id_usuario = data['id_usuario']
         localizacion = data['localizacion']
         ruta = data.get('Ruta', [])
+        tipo = data['Tipo']
         direccion = data['Direccion']
         camion = data.get('Camion', '')
         camiones.add(camion)
@@ -57,6 +58,7 @@ def update_ubicacion():
             'localizacion': localizacion,
             'Ruta': ruta,
             'Direccion': direccion,
+            'Tipo': tipo,
             'Camion': camion,
         }
 
@@ -70,6 +72,12 @@ def update_ubicacion():
 def obtener_ubicacion_camion(camion):
     datos_camion = {k: v for k, v in usuario_localizaciones.items() if v['Camion'] == camion}
     return datos_camion
+
+@app.route('/obtener_ubicacion/<tipo>', methods=['GET'])
+@auth.login_required
+def obtener_ubicacion_tipo(tipo):
+    dato_tipo = {k: v for k, v in usuario_localizaciones.items() if v['Tipo'] == tipo}
+    return dato_tipo
 
 @app.route('/camiones', methods=['GET'])
 @auth.login_required
