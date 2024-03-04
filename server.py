@@ -73,7 +73,7 @@ def obtener_ubicacion_camion(camion):
     datos_camion = {k: v for k, v in usuario_localizaciones.items() if v['Camion'] == camion}
     return datos_camion
 
-@app.route('/obtener_ubicacion/<tipo>', methods=['GET'])
+@app.route('/obtener_ubicacion_tipo/<tipo>', methods=['GET'])
 @auth.login_required
 def obtener_ubicacion_tipo(tipo):
     dato_tipo = {k: v for k, v in usuario_localizaciones.items() if v['Tipo'] == tipo}
