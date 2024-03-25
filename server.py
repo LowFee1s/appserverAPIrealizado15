@@ -67,6 +67,36 @@ def update_ubicacion():
     elif request.method    ==    'OPTIONS':
         return ("", 200)
         
+
+@app.route('/actualizar_ubicacion', methods=['PUT', 'OPTIONS'])
+@auth.login_required
+def actualizar_ubicacion():
+    if request.method    ==    'PUT':
+        data = request.get_json()
+        id_usuario = data['id_usuario'] 
+        if id_usuario in usuario_localizaciones:
+            localizacion = data.get('localizacion', usuario_localizaciones[id_usuario]['localizacion'])
+            ruta = data.get('Ruta', usuario_localizaciones[id_usuario]['Ruta'])
+            tipo = data.get('Tipo', usuario_localizaciones[id_usuario]['Tipo'])
+            direccion = data.get('Direccion', usuario_localizaciones[id_usuario]['Direccion'])
+            camion = data.get('Camion', usuario_localizaciones[id_usuario]['Camion'])
+
+            usuario_localizaciones[id_usuario] = {
+                'localizacion': localizacion,
+                'Ruta': ruta,
+                'Direccion': direccion,
+                'Tipo': tipo,
+                'Camion': camion,
+            }
+            
+            return "Ubicacion Actualizada"
+        
+        else: 
+            return "Usuario no encontrado"
+        
+    elif request.method    ==    'OPTIONS':
+        return ("", 200)
+        
 @app.route('/obtener_ubicacion/<camion>', methods=['GET'])
 @auth.login_required
 def obtener_ubicacion_camion(camion):
