@@ -68,33 +68,49 @@ def update_ubicacion():
         return ("", 200)
         
 
-@app.route('/actualizar_ubicacion', methods=['PUT', 'OPTIONS'])
+@app.route('/actualizar_ruta', methods=['PUT', 'OPTIONS'])
 @auth.login_required
-def actualizar_ubicacion():
-    if request.method    ==    'PUT':
+def actualizar_ruta():
+    if request.method == 'PUT':
         data = request.get_json()
-        id_usuario = data['id_usuario'] 
+        id_usuario = data['id_usuario']
         if id_usuario in usuario_localizaciones:
-            localizacion = data.get('localizacion', usuario_localizaciones[id_usuario]['localizacion'])
             ruta = data.get('Ruta', usuario_localizaciones[id_usuario]['Ruta'])
-            tipo = data.get('Tipo', usuario_localizaciones[id_usuario]['Tipo'])
-            direccion = data.get('Direccion', usuario_localizaciones[id_usuario]['Direccion'])
-            camion = data.get('Camion', usuario_localizaciones[id_usuario]['Camion'])
+            usuario_localizaciones[id_usuario]['Ruta'] = ruta
+            return "Ruta Actualizada"
+        else:
+            return "Usuario no encontrado", 404
+    elif request.method == 'OPTIONS':
+        return ("", 200)
 
-            usuario_localizaciones[id_usuario] = {
-                'localizacion': localizacion,
-                'Ruta': ruta,
-                'Direccion': direccion,
-                'Tipo': tipo,
-                'Camion': camion,
-            }
-            
-            return "Ubicacion Actualizada"
-        
-        else: 
-            return "Usuario no encontrado"
-        
-    elif request.method    ==    'OPTIONS':
+@app.route('/actualizar_tipo', methods=['PUT', 'OPTIONS'])
+@auth.login_required
+def actualizar_tipo():
+    if request.method == 'PUT':
+        data = request.get_json()
+        id_usuario = data['id_usuario']
+        if id_usuario in usuario_localizaciones:
+            tipo = data.get('Tipo', usuario_localizaciones[id_usuario]['Tipo'])
+            usuario_localizaciones[id_usuario]['Tipo'] = tipo
+            return "Tipo Actualizado"
+        else:
+            return "Usuario no encontrado", 404
+    elif request.method == 'OPTIONS':
+        return ("", 200)
+
+@app.route('/actualizar_camion', methods=['PUT', 'OPTIONS'])
+@auth.login_required
+def actualizar_camion():
+    if request.method == 'PUT':
+        data = request.get_json()
+        id_usuario = data['id_usuario']
+        if id_usuario in usuario_localizaciones:
+            camion = data.get('Camion', usuario_localizaciones[id_usuario]['Camion'])
+            usuario_localizaciones[id_usuario]['Camion'] = camion
+            return "Camion Actualizado"
+        else:
+            return "Usuario no encontrado", 404
+    elif request.method == 'OPTIONS':
         return ("", 200)
         
 @app.route('/obtener_ubicacion/<camion>', methods=['GET'])
