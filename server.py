@@ -51,6 +51,7 @@ def update_ubicacion():
         ruta = data.get('Ruta', [])
         tipo = data['Tipo']
         lugart = data['Lugar'];
+        idcamion = data['IdCamion'];
         direccion = data['Direccion']
         camion = data.get('Camion', '')
         camiones.add(camion)
@@ -60,6 +61,7 @@ def update_ubicacion():
             'Ruta': ruta,
             'Direccion': direccion,
             'Tipo': tipo,
+            'IdCamion': idcamion,
             'Lugar': lugart,
             'Camion': camion,
         }
